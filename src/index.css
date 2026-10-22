@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/*
+  Bespoke Opulence — a scroll-driven opening over the studio's own event
+  photography, then an ordinary responsive page.
+
+  The palette is warm near-black with a single accent: the gold of the
+  logo, lifted slightly so it holds 4.5:1 and up on the ink. Gold marks
+  the logo, the active index number, rules and the primary action — nothing
+  else — which is what keeps a dark photographic page reading as luxury
+  rather than as a dashboard.
+
+  Type: Cormorant Garamond for display (a high-contrast wedding serif that
+  sits next to the logo's caps), Manrope for text and labels.
+*/
+@theme {
+  --color-ink: #0e0d0b;
+  --color-ink-2: #15130f;
+  --color-ink-3: #1d1a15;
+  --color-bone: #f6f1e7;
+  --color-mist: rgba(246, 241, 231, 0.7);
+  --color-gold: #c9ad6a;
+  --color-gold-soft: rgba(201, 173, 106, 0.16);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+html, body, #root { margin: 0; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sections land under the fixed nav, not behind it. */
+section[id] { scroll-margin-top: 72px; }
+
+/* Component classes live in Tailwind's components layer, so utilities on
+   the same element (hidden, w-full, px-*) still win. */
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 0.95;
+    color: var(--color-bone);
+  }
+
+  .label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .glass {
+    background: linear-gradient(160deg, rgba(255, 248, 235, 0.14) 0%, rgba(255, 248, 235, 0.04) 100%);
+    border: 1px solid rgba(201, 173, 106, 0.32);
+    box-shadow: inset 0 1px 0 rgba(255, 248, 235, 0.25), 0 26px 50px -26px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
+  }
+
+  /* One focus ring everywhere: gold, offset so it clears dark photography. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 26px;
+    border-radius: 999px;
+    background: var(--color-gold);
+    color: var(--color-ink);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 180ms ease, transform 180ms ease;
+  }
+  .btn-gold:hover { background: #d9c088; }
+  .btn-gold:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 241, 231, 0.4);
+    color: var(--color-bone);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 180ms ease, background-color 180ms ease;
+  }
+  .btn-ghost:hover { border-color: var(--color-gold); background: rgba(201, 173, 106, 0.08); }
+
+  .field {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(246, 241, 231, 0.16);
+    background: rgba(246, 241, 231, 0.04);
+    color: var(--color-bone);
+    font: inherit;
+    font-size: 16px;
+    transition: border-color 160ms ease;
+  }
+  .field:hover { border-color: rgba(246, 241, 231, 0.3); }
+  .field:focus-visible { outline-offset: 0; border-color: var(--color-gold); }
+  .field[aria-invalid="true"] { border-color: #e58a7a; }
+  .field option { background: var(--color-ink-2); color: var(--color-bone); }
+  .field::-webkit-calendar-picker-indicator { filter: invert(0.9); }
+}
+
+/* The nav sits outside the scaled artboard so it stays readable at any
+   width; under tablet width its centre links step into a menu sheet. */
+@media (max-width: 960px) {
+  .nav-links { display: none !important; }
+}
+@media (min-width: 961px) {
+  .nav-menu-btn { display: none !important; }
+}

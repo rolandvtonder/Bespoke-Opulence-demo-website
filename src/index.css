@@ -134,10 +134,11 @@ section[id] { scroll-margin-top: 72px; }
 }
 
 /* The nav sits outside the scaled artboard so it stays readable at any
-   width; under tablet width its centre links step into a menu sheet. */
-@media (max-width: 960px) {
+   width; below 1200px (where the wordmark and six links
+   no longer fit side by side) the links step into a menu sheet. */
+@media (max-width: 1199px) {
   .nav-links { display: none !important; }
 }
-@media (min-width: 961px) {
+@media (min-width: 1200px) {
   .nav-menu-btn { display: none !important; }
 }

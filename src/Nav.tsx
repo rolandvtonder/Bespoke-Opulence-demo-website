@@ -107,7 +107,7 @@ export default function Nav() {
             ))}
           </div>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <a href="#contact" className="btn-gold hidden sm:inline-flex" style={{ minHeight: 42, padding: '0 20px', fontSize: 13 }}>
+            <a href="#contact" className="btn-gold hidden sm:inline-flex" style={{ minHeight: 42, padding: '0 20px', fontSize: 13, whiteSpace: 'nowrap' }}>
               Book now
             </a>
             <button
